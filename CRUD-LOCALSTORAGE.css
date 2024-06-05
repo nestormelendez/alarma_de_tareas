@@ -1,0 +1,219 @@
+:root {
+  --background-color-primary: #323940;
+  --background-color-second: rgb(16, 18, 4);
+  --background-color-third: #22272b;
+  --background-color-btn: #579dff;
+  --background-color-text: #b6c2cf;
+  --background-color-mark-primary: #1c2b41;
+  --background-color-mark-second: #de350b;
+}
+html {
+  background-color: var(--background-color-primary);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.container {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  min-width: 370px;
+  height: auto;
+  background-image: url(./assets/background-tech.png);
+  margin: 0 auto;
+  border-radius: 30px;
+}
+
+.btn-edit,
+.btn-description {
+  border: none;
+  background-color: transparent;
+  width: 17px;
+}
+.btn-delete {
+  border: none;
+  border-radius: 50%;
+  height: 20px;
+  background-color: transparent;
+  width: 17px;
+}
+
+.btn-zoom-in {
+  border: 1px solid var(--background-color-text);
+  border-radius: 50%;
+  background-color: transparent;
+  width: 50px;
+  position: fixed;
+  top: 90%;
+  right: 5%;
+}
+.btn-zoom-out {
+  border: 1px solid var(--background-color-text);
+  border-radius: 50%;
+  background-color: transparent;
+  width: 50px;
+  position: fixed;
+  top: 80%;
+  right: 5%;
+}
+.header-content {
+  height: 50px;
+  width: 270px;
+  padding: 0 10px;
+  border-radius: 10px 10px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  background-color: var(--background-color-second);
+}
+.footer-content {
+  height: 50px;
+  width: 270px;
+  padding: 0 10px;
+  border-radius: 0px 0px 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  background-color: var(--background-color-second);
+}
+.header-task,
+.footer-task {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: 93%;
+}
+.name-task-0 {
+  background-color: var(--background-color-btn);
+  color: var(--background-color-primary);
+  height: 14px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.7em;
+  font-weight: 700;
+}
+.date-task {
+  display: flex;
+  flex-flow: column wrap;
+  margin: 5px 0px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+h1 {
+  color: var(--background-color-text);
+  font-weight: 500;
+}
+.btn-options {
+  border: none;
+  background-color: transparent;
+  width: 20px;
+}
+.btn-create-plus {
+  border: none;
+  background-color: transparent;
+  width: 20px;
+}
+svg {
+  fill: var(--background-color-text);
+  border: none;
+  border-radius: 50%;
+  width: 15px;
+  height: 17px;
+  padding: 5px;
+}
+svg:hover{ 
+    background-color: #323940;
+}
+
+.logo {
+  width: 100px;
+}
+
+.tasks-content {
+  background-color: var(--background-color-second);
+  display: flex;
+  justify-content: center;
+  width: 270px;
+  height: 80%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.task {
+  background-color: var(--background-color-primary);
+  width: 85%;
+  height: 16dvh;
+  padding: 10px;
+  border-radius: 20px;
+  color: var(--background-color-text);
+  font-size: 2em;
+  font-size: 16px;
+}
+.task-description {
+  font-size: 16px;
+}
+.task-description-content {
+  background-color: var(--background-color-primary);
+  width: 100%;
+  display: none;
+  opacity: 0%;
+  transition: all 1.5s;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid var(--background-color-second);
+}
+.is-active {
+  background-color: var(--background-color-primary);
+  width: 90%;
+  height: 100%;
+  display: block;
+  opacity: 1;
+  transition: all 1.5s;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid var(--background-color-second);
+  z-index: 2;
+}
+.btn-task {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  padding-top: 5px;
+}
+.btn-task svg {
+  width: 15px;
+  height: 23px;
+}
+.btn-delete svg {
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  background-color: var(--background-color-mark-second);
+}
+.btn-image {
+  border: none;
+  background-color: transparent;
+}
+.input-task {
+  background-color: transparent;
+  border: none;
+  width: 85%;
+  color: var(--background-color-text);
+  height: 30px;
+  border-radius: 10px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.input-task:hover {
+  background-color: var(--background-color-primary);
+  
+}
+
+.date-content {
+  display: flex;
+  justify-content: space-evenly;
+}
