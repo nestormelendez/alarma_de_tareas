@@ -9,6 +9,8 @@
 }
 html {
   background-color: var(--background-color-primary);
+  background-image: url(./assets/background-line.png);
+  background-size: cover;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .container {
@@ -16,9 +18,8 @@ html {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  min-width: 370px;
+  min-width: auto;
   height: auto;
-  background-image: url(./assets/background-tech.png);
   margin: 0 auto;
   border-radius: 30px;
 }
@@ -122,8 +123,8 @@ svg {
   height: 17px;
   padding: 5px;
 }
-svg:hover{ 
-    background-color: #323940;
+svg:hover {
+  background-color: #323940;
 }
 
 .logo {
@@ -164,18 +165,6 @@ svg:hover{
   border-radius: 20px;
   border: 1px solid var(--background-color-second);
 }
-.is-active {
-  background-color: var(--background-color-primary);
-  width: 90%;
-  height: 100%;
-  display: block;
-  opacity: 1;
-  transition: all 1.5s;
-  padding: 10px;
-  border-radius: 20px;
-  border: 1px solid var(--background-color-second);
-  z-index: 2;
-}
 .btn-task {
   display: flex;
   flex-flow: row nowrap;
@@ -210,7 +199,6 @@ svg:hover{
 }
 .input-task:hover {
   background-color: var(--background-color-primary);
-  
 }
 
 .date-content {
