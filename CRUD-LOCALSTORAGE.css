@@ -1,7 +1,7 @@
 :root {
   --background-color-primary: #323940;
   --background-color-second: rgb(16, 18, 4);
-  --background-color-third: #22272b;
+  --background-color-third: rgb(34, 39, 43);
   --background-color-btn: #579dff;
   --background-color-text: #b6c2cf;
   --background-color-mark-primary: #1c2b41;
@@ -204,4 +204,91 @@ svg:hover {
 .date-content {
   display: flex;
   justify-content: space-evenly;
+}
+.modal{
+    position: absolute;
+    width: 240px;
+    height: 250px;
+    background-color: var(--background-color-third);
+    border-radius: 10px;
+    padding: 15px;
+    z-index: 20;
+}
+.modal-background{
+    background-color: rgba(34, 39, 43, 0.8);
+    z-index: 19;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.modal input {
+    width: 170px;
+    height: 5px;
+    background-color: var(--background-color-third);
+    border-radius: 10px;
+    padding: 15px;
+    color: var(--background-color-text);
+}
+
+.modal textarea {
+    width: 170px;
+    height: 50px;
+    background-color: var(--background-color-third);
+    border-radius: 10px;
+    padding: 15px;
+    color: var(--background-color-text);
+    resize: none;
+}
+.modal span {
+    width: 170px;
+    height: 20px;
+    background-color: var(--background-color-third);
+    border-radius: 10px;
+    padding: 5px;
+    color: var(--background-color-text);
+    resize: none;
+}
+.modal article {
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+}
+.modal textarea::-webkit-scrollbar {
+    background-color: var(--background-color-third);
+    border: 1px solid var(--background-color-second);
+    color: var(--background-color-text);
+}
+.modal textarea::-webkit-scrollbar-thumb {
+    background-color: var(--background-color-primary);
+    border: 1px solid var(--background-color-second);
+    color: var(--background-color-text);
+}
+.modal textarea::-webkit-scrollbar-thumb:hover {
+    background-color: var(--background-color-mark-primary);
+    border: 1px solid var(--background-color-second);
+    color: var(--background-color-text);
+}
+.btn-save{
+    width: 100px;
+    background-color: var(--background-color-btn);
+    color: var(--background-color-primary);
+    border-radius: 5px;
+}
+.btn-cancel{
+    width: 100px;
+    background-color: transparent;
+    color: var(--background-color-text);
+    border: 1px solid var(--background-color-mark-second);
+    border-radius: 5px;
+}
+.btn-cancel:hover {
+    background-color: var(--background-color-mark-second);
+    color: var(--background-color-third);
+    border: 1px solid var(--background-color-mark-second);
+    border-radius: 5px;
+}
+.none {
+    display: none;
 }
