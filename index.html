@@ -29,6 +29,7 @@
 <body>
 
   <main class="container">
+    <div id="modal-background" class="modal-background none"></div>
 
     <header class="header-content">
       <h1>To do</h1>
@@ -76,17 +77,17 @@
     <div id="modal" class="modal none">
         <article>
           <span>Crear tareas</span>
-          <input id="input-name-task-0" type="text" placeholder="Escriba el titulo de la tarea">
-          <textarea id="input-description-task-0" placeholder="Descripcion de la tarea" name="" rows="5" maxlength="255"></textarea>
-          <input id="input-date-task-0" class="datetime-local" type="datetime-local">
+          <input id="input-name-task" type="text" placeholder="Escriba el titulo de la tarea" maxlength="20">
+          <textarea id="input-description-task" placeholder="Descripcion de la tarea" name="" rows="5" maxlength="255"></textarea>
+          <input id="input-date-task" class="datetime-local" type="datetime-local">
           
           <div>
-            <button data-save="0" class="btn-save">Guardar</button>
-            <button data-cancel="0" class="btn-cancel">Cancel</button>  
+            <button class="btn-save">Guardar</button>
+            <button class="btn-cancel">Cancel</button>  
           </div>
         </article>
       </div>
-      <div id="modal-background" class="modal-background none"></div>
+     
 
   </main>
   <!-- <audio id="0" controls>
