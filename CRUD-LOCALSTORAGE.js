@@ -9,19 +9,23 @@ function cambiarTiempo() {
   let tasksDriver = localStorage.getItem(tasksStorage);
   const now = moment();
   let tasks = [];
-  
+
   if (tasksDriver) {
     console.log(now.format("YYYY-MM-DDTHH:mm"));
     tasks = JSON.parse(tasksDriver);
     for (let index = 0; index < tasks.length; index++) {
       const tarea = tasks[index];
-     
-      if (tarea.dataInput <= now.format("YYYY-MM-DDTHH:mm") && tarea.yaSono === false) {
-        console.log("hoaaa")
+
+      if (
+        tarea.dataInput <= now.format("YYYY-MM-DDTHH:mm") &&
+        tarea.yaSono === false
+      ) {
+        let modal = document.getElementById("modal-alarma");
+        let titleAlarma = document.getElementById("title-alarma");
+        titleAlarma.innerText = `Se cumplio el tiempo de la tarea ${tarea.nameTask}`;
+        modal.classList.toggle("none");
         alarma.play();
         tarea.yaSono = true;
-
-        // Actualiza la tarea en localStorage
         localStorage.setItem(tasksStorage, JSON.stringify(tasks));
       }
     }
@@ -50,6 +54,7 @@ document.addEventListener("click", (e) => {
     let finalMoment = moment(inputDateTask.value);
     console.log(finalMoment);
     let now = moment();
+    console.log(now);
     let duration = finalMoment.diff(now);
     let interval = moment.duration(duration);
     let year = interval.years();
@@ -97,7 +102,7 @@ document.addEventListener("click", (e) => {
       tasksCreate += `
         <article class="task">
     <div class="header-task">
-      <span class="name-task-${element.id}">${element.nameTask}</span>
+      <span class="name-task-${element.yaSono} name-task-${element.id}">${element.nameTask}</span>
       <button data-edit="${element.id}" class="btn-edit edit"">
         <svg class="edit" data-more="${element.id}" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -186,6 +191,7 @@ document.addEventListener("click", (e) => {
     localStorage.setItem(tasksStorage, saveTasks);
     positionEliminar = 0;
   }
+
   if (e.target.matches(".description")) {
     let modalBackground = document.getElementById(`modal-background`);
     let modalDescription = document.getElementById(`modal-description`);
@@ -276,6 +282,7 @@ document.addEventListener("click", (e) => {
         element.dataInput = inputDateChange;
         element.dateFinal = finalMoment.format("DD-MM-YYYY / HH:mm");
         element.dateLimit = faltan;
+        element.yaSono = false;
       }
     }
     const saveTasks = JSON.stringify(tasks);
@@ -323,6 +330,7 @@ document.addEventListener("click", (e) => {
         descriptionTask = element.descriptionTask;
         dateTask = element.dataInput;
         lugar = index;
+        yaSono = false;
       }
     }
     tituloDescription.innerText = `Editar tarea`;
@@ -335,6 +343,13 @@ document.addEventListener("click", (e) => {
     document.getElementById(`input-description-task-edit`).value =
       descriptionTask;
     document.getElementById(`input-date-task-edit`).value = dateTask;
+  }
+  if (e.target.matches(".btn-alarma")) {
+    const alarma = document.getElementById("alarma");
+    let modal = document.getElementById("modal-alarma");
+    alarma.pause();
+    modal.classList.toggle("none");
+    location.reload();
   }
 });
 
@@ -351,7 +366,7 @@ function reloadTasks() {
     tasksCreate += `
         <article class="task">
     <div class="header-task">
-      <span class="name-task-${element.id}">${element.nameTask}</span>
+      <span class="name-task-${element.yaSono} name-task-${element.id}">${element.nameTask}</span>
       <button data-edit="${element.id}" class="btn-edit edit">
         <svg class="edit" data-more="${element.id}" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
