@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cuaderno de notas</title>
-  <meta name="descripcion" content="Organiza tus tareas, usa Cuaderno de notas"> <!-- muy importante para el SEO -->
+  <meta name="description" content="Organiza tus tareas, usa Cuaderno de notas"> <!-- muy importante para el SEO -->
   <link rel="canonical" href="https://nestormelendez.github.io/Cuaderno_de_notas">
   <link rel="favicon" href="https://nestormelendez.github.io/Cuaderno_de_notas">
   <!-- las imagenes deben de tener la ruta absoluta del internet -->
@@ -33,70 +33,61 @@
 
     <header class="header-content">
       <h1>To do</h1>
-      <div>
-        <button id="btn-create-plus" class="btn-create-plus">
-          <svg xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-              d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
-          </svg>
-        </button>
-        <button id="btn-options" class="btn-options">
-          <svg xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-              d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z" />
-          </svg>
-        </button>
-      </div>
     </header>
 
-    <section id="tasks-content" class="tasks-content">
-
-      
-
-    </section>
-
-
+    <section id="tasks-content" class="tasks-content"></section>
 
     <header class="footer-content">
       <span class="input-task">+ Añade una tarjeta</span>
-      <div>
-        <button id="btn-create-plus" class="btn-image">
-          <svg class="btn-image" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-              d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z" />
-          </svg>
-        </button>
-      </div>
     </header>
 
+    <div id="modal-create" class="modal none">
+      <article>
+        <span>Crear tareas</span>
+        <input id="input-name-task" type="text" placeholder="Escriba el titulo de la tarea" maxlength="20">
+        <textarea id="input-description-task" placeholder="description de la tarea" name="" rows="5"
+          maxlength="255"></textarea>
+        <input id="input-date-task" class="datetime-local" type="datetime-local">
 
+        <div>
+          <button class="btn-save">Guardar</button>
+          <button class="btn-cancel" data-modal="create">Cancel</button>
+        </div>
+      </article>
+    </div>
 
-    <div id="modal" class="modal none">
-        <article>
-          <span>Crear tareas</span>
-          <input id="input-name-task" type="text" placeholder="Escriba el titulo de la tarea" maxlength="20">
-          <textarea id="input-description-task" placeholder="Descripcion de la tarea" name="" rows="5" maxlength="255"></textarea>
-          <input id="input-date-task" class="datetime-local" type="datetime-local">
-          
-          <div>
-            <button class="btn-save">Guardar</button>
-            <button class="btn-cancel">Cancel</button>  
-          </div>
-        </article>
-      </div>
-     
+    <div id="modal-description" class="modal-description none">
+      <article>
+        <span id="title-description">Detalles de la tareas</span>
+        <input id="input-name-task-edit" type="text" placeholder="Escriba el titulo de la tarea" maxlength="20"
+          disabled>
+        <textarea id="input-description-task-edit" placeholder="description de la tarea" name="" rows="5"
+          maxlength="255" disabled></textarea>
+        <input id="input-date-task-edit" class="datetime-local" type="datetime-local" disabled>
+
+        <div>
+          <button id="btn-edit-change" class="btn-edit-change">Editar</button>
+          <button id="btn-save-change" class="btn-save-change none">Guardar</button>
+          <button class="btn-cancel" data-modal="description">Cancel</button>
+        </div>
+      </article>
+    </div>
+
+    <div id="modal-delete" class="modal-delete none">
+      <article class="eliminar-content">
+        <span id="title-eliminar">¿Esta seguro de eliminar la tarea .....?</span>
+        <div>
+          <button id="btn-eliminar" class="btn-eliminar --eliminar">Eliminar</button>
+          <button class="btn-cancel" data-modal="delete">Cancel</button>
+        </div>
+      </article>
+    </div>
 
   </main>
-  <!-- <audio id="0" controls>
-    <source src="./assets/Attack on Titan - Opening 1 【Guren no Yumiya】 4K - UHD Creditless _ CC (320).mp3"
-      type="audio/ogg">
-  </audio> -->
+ 
+  <audio id="alarma" src="./assets/Attack-on-Titan- Opening.mp3"></audio>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
   <script src="./CRUD-LOCALSTORAGE.js"></script>
 </body>
-
 
 </html>

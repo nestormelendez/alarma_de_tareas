@@ -145,9 +145,9 @@ svg:hover {
 .task {
   background-color: var(--background-color-primary);
   width: 85%;
-  height: 16dvh;
+  height: 14dvh;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   color: var(--background-color-text);
   font-size: 2em;
   font-size: 16px;
@@ -205,7 +205,8 @@ svg:hover {
   display: flex;
   justify-content: space-evenly;
 }
-.modal {
+.modal,
+.modal-description {
   position: absolute;
   top: 25%;
   width: 240px;
@@ -215,18 +216,29 @@ svg:hover {
   padding: 15px;
   z-index: 20;
 }
+.modal-delete {
+  position: absolute;
+  top: 25%;
+  width: 240px;
+  height: 90px;
+  background-color: var(--background-color-third);
+  border-radius: 10px;
+  padding: 15px;
+  z-index: 20;
+}
 .modal-background {
-  position: fixed; 
-  z-index: 1; 
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0, 0, 0); 
-  background-color: rgba(0, 0, 0, 0.4); 
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
-.modal input {
+.modal input,
+.modal-description input {
   width: 170px;
   height: 5px;
   background-color: var(--background-color-third);
@@ -235,7 +247,8 @@ svg:hover {
   color: var(--background-color-text);
 }
 
-.modal textarea {
+.modal textarea,
+.modal-description textarea {
   width: 170px;
   height: 50px;
   background-color: var(--background-color-third);
@@ -244,7 +257,9 @@ svg:hover {
   color: var(--background-color-text);
   resize: none;
 }
-.modal span {
+.modal span,
+.modal-description span,
+.modal-delete span {
   width: 170px;
   height: 20px;
   background-color: var(--background-color-third);
@@ -253,31 +268,48 @@ svg:hover {
   color: var(--background-color-text);
   resize: none;
 }
-.modal article {
+.modal article,
+.modal-description article {
   display: flex;
   flex-flow: column;
   gap: 10px;
 }
-.modal textarea::-webkit-scrollbar {
+.modal textarea::-webkit-scrollbar,
+.modal-description textarea::-webkit-scrollbar {
   background-color: var(--background-color-third);
   border: 1px solid var(--background-color-second);
   color: var(--background-color-text);
 }
-.modal textarea::-webkit-scrollbar-thumb {
+.modal textarea::-webkit-scrollbar-thumb,
+.modal-description textarea::-webkit-scrollbar-thumb {
   background-color: var(--background-color-primary);
   border: 1px solid var(--background-color-second);
   color: var(--background-color-text);
 }
-.modal textarea::-webkit-scrollbar-thumb:hover {
+.modal textarea::-webkit-scrollbar-thumb:hover,
+.modal-description textarea::-webkit-scrollbar-thumb:hover {
   background-color: var(--background-color-mark-primary);
   border: 1px solid var(--background-color-second);
   color: var(--background-color-text);
 }
-.btn-save {
+.btn-save,
+.btn-edit-change,
+.btn-save-change,
+.btn-eliminar {
   width: 100px;
   background-color: var(--background-color-btn);
   color: var(--background-color-primary);
   border-radius: 5px;
+}
+.--eliminar {
+  background-color: var(--background-color-mark-second);
+  color: var(--background-color-mark-primary);
+  opacity: 0.9 ;
+}
+.--eliminar:hover {
+  background-color: var(--background-color-mark-second);
+  color: var(--background-color-mark-primary);
+  opacity: 1;
 }
 .btn-cancel {
   width: 100px;
@@ -294,4 +326,10 @@ svg:hover {
 }
 .none {
   display: none;
+}
+.eliminar-content {
+  display: flex;
+  height: 80px;
+  flex-flow: column nowrap;
+  gap: 35px;
 }
