@@ -4,17 +4,33 @@ let modal = document.getElementById(`modal-create`);
 let PositionChange = 0;
 let positionEliminar = 0;
 
+function cambiarTiempo() {
+  const alarma = document.getElementById("alarma");
+  let tasksDriver = localStorage.getItem(tasksStorage);
+  const now = moment();
+  let tasks = [];
+  
+  if (tasksDriver) {
+    console.log(now.format("YYYY-MM-DDTHH:mm"));
+    tasks = JSON.parse(tasksDriver);
+    for (let index = 0; index < tasks.length; index++) {
+      const tarea = tasks[index];
+     
+      if (tarea.dataInput <= now.format("YYYY-MM-DDTHH:mm") && tarea.yaSono === false) {
+        console.log("hoaaa")
+        alarma.play();
+        tarea.yaSono = true;
 
+        // Actualiza la tarea en localStorage
+        localStorage.setItem(tasksStorage, JSON.stringify(tasks));
+      }
+    }
+  }
+}
 
-
-
-
-
-
-
-
-
-
+setInterval(() => {
+  cambiarTiempo();
+}, 1000);
 
 document.addEventListener("DOMContentLoaded", (e) => {
   reloadTasks();
@@ -70,6 +86,7 @@ document.addEventListener("click", (e) => {
       dateFinal: finalMoment.format("DD-MM-YYYY / HH:mm"),
       dataInput: inputDateTask.value,
       dateLimit: faltan,
+      yaSono: false,
     };
     tasks.push(newTask);
     const saveTasks = JSON.stringify(tasks);
@@ -315,7 +332,8 @@ document.addEventListener("click", (e) => {
     btnSaveChange.classList.toggle("none");
     btnEditChange.classList.toggle("none");
     document.getElementById(`input-name-task-edit`).value = nameTask;
-    document.getElementById(`input-description-task-edit`).value = descriptionTask;
+    document.getElementById(`input-description-task-edit`).value =
+      descriptionTask;
     document.getElementById(`input-date-task-edit`).value = dateTask;
   }
 });
