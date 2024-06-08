@@ -1,17 +1,10 @@
-
 moment.locale("es");
-
-
-
-
 
 let tasksStorage = "Tasks";
 let modalBackground = document.getElementById(`modal-background`);
 let modal = document.getElementById(`modal-create`);
 let PositionChange = 0;
 let positionEliminar = 0;
-
-
 
 function cambiarTiempo() {
   const alarma = document.getElementById("alarma");
@@ -39,18 +32,25 @@ function cambiarTiempo() {
         alarma.play();
         tarea.yaSono = true;
         window.scrollTo({ behavior: "smooth", top: 0 });
-        
-        if(Notification.permission === `granted`) {
-         const notificacion = new Notification(`Se acabo el tiempo`, {
+
+        if (Notification.permission === `granted`) {
+          const notificacion = new Notification(`Se acabo el tiempo`, {
             icon: `./assets/never-give-up-small.png`,
-            body: `Se cumplio el tiempo de la tarea ${tarea.nameTask}`
+            body: `Se cumplio el tiempo de la tarea ${tarea.nameTask}`,
           });
-          notificacion.onclick = function() {
-            window.open(`https://nestormelendez.github.io/alarma_de_tareas/`)
-          }
+          notificacion.onclick = function () {
+            // const existingWindow = window.open('https://nestormelendez.github.io/alarma_de_tareas/', 'noopener');
+            const existingWindow = window.open(
+              "http://127.0.0.1:5500/index.html",
+              "noopener"
+            );
+            if (existingWindow) {
+              existingWindow.focus();
+            }
+            /* window.open(`https://nestormelendez.github.io/alarma_de_tareas/`) */
+          };
         }
         localStorage.setItem(tasksStorage, JSON.stringify(tasks));
-
       }
     }
   }
@@ -61,10 +61,9 @@ setInterval(() => {
 }, 1000);
 
 document.addEventListener("DOMContentLoaded", (e) => {
-
-  Notification.requestPermission().then(resultado => {
+  Notification.requestPermission().then((resultado) => {
     console.log(`respuesta: `, resultado);
-  })
+  });
   reloadTasks();
 });
 
