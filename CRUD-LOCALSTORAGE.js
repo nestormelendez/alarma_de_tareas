@@ -1,45 +1,56 @@
-/* const moment = require("moment");
- */
-/* const moment = require("moment"); */
-moment.locale('es');
+
+moment.locale("es");
+
+
+
+
+
 let tasksStorage = "Tasks";
 let modalBackground = document.getElementById(`modal-background`);
 let modal = document.getElementById(`modal-create`);
 let PositionChange = 0;
 let positionEliminar = 0;
 
+
+
 function cambiarTiempo() {
   const alarma = document.getElementById("alarma");
   let tasksDriver = localStorage.getItem(tasksStorage);
   const now = moment();
   let tasks = [];
-
   if (tasksDriver) {
     console.log(now.format("YYYY-MM-DDTHH:mm"));
     tasks = JSON.parse(tasksDriver);
-
-    
     for (let index = 0; index < tasks.length; index++) {
       const tarea = tasks[index];
-
-      let cuentaRegresiva = document.getElementById(`countdown-${tarea.id}`) 
-
-      let faltan = moment(tarea.dataInput).fromNow()
-
+      let cuentaRegresiva = document.getElementById(`countdown-${tarea.id}`);
+      let faltan = moment(tarea.dataInput).fromNow();
       cuentaRegresiva.innerText = faltan;
-
-
       if (
         tarea.dataInput <= now.format("YYYY-MM-DDTHH:mm") &&
         tarea.yaSono === false
       ) {
         let modal = document.getElementById("modal-alarma");
+        let modalBackground = document.getElementById("modal-background");
         let titleAlarma = document.getElementById("title-alarma");
         titleAlarma.innerText = `Se cumplio el tiempo de la tarea ${tarea.nameTask}`;
         modal.classList.toggle("none");
+        modalBackground.classList.toggle("none");
         alarma.play();
         tarea.yaSono = true;
+        window.scrollTo({ behavior: "smooth", top: 0 });
+        
+        if(Notification.permission === `granted`) {
+         const notificacion = new Notification(`Se acabo el tiempo`, {
+            icon: `./assets/never-give-up-small.png`,
+            body: `Se cumplio el tiempo de la tarea ${tarea.nameTask}`
+          });
+          notificacion.onclick = function() {
+            window.open(`https://nestormelendez.github.io/alarma_de_tareas/`)
+          }
+        }
         localStorage.setItem(tasksStorage, JSON.stringify(tasks));
+
       }
     }
   }
@@ -50,6 +61,10 @@ setInterval(() => {
 }, 1000);
 
 document.addEventListener("DOMContentLoaded", (e) => {
+
+  Notification.requestPermission().then(resultado => {
+    console.log(`respuesta: `, resultado);
+  })
   reloadTasks();
 });
 
@@ -68,8 +83,8 @@ document.addEventListener("click", (e) => {
     console.log(finalMoment);
     let now = moment();
     console.log(now);
-    let faltan = moment(finalMoment).fromNow()
-   /*  let duration = finalMoment.diff(now);
+    let faltan = moment(finalMoment).fromNow();
+    /*  let duration = finalMoment.diff(now);
     let interval = moment.duration(duration);
     let year = interval.years();
     let month = interval.months();
@@ -261,8 +276,9 @@ document.addEventListener("click", (e) => {
     let btnEditChange = document.getElementById(`btn-edit-change`);
     let finalMoment = moment(inputDateChange);
     console.log(finalMoment);
-    let now = moment();
-    let duration = finalMoment.diff(now);
+    /*     let now = moment(); */
+    let faltan = moment(finalMoment).fromNow();
+    /* let duration = finalMoment.diff(now);
     let interval = moment.duration(duration);
     let year = interval.years();
     let month = interval.months();
@@ -283,7 +299,7 @@ document.addEventListener("click", (e) => {
       faltan = `Faltan ${minute} minutos`;
     } else if (second > 0) {
       faltan = `Faltan ${second} segundos`;
-    }
+    } */
     let tasks = [];
     if (tasksDriver) {
       tasks = JSON.parse(tasksDriver);
@@ -357,6 +373,7 @@ document.addEventListener("click", (e) => {
     document.getElementById(`input-description-task-edit`).value =
       descriptionTask;
     document.getElementById(`input-date-task-edit`).value = dateTask;
+    window.scrollTo({ behavior: "smooth", top: 0 });
   }
   if (e.target.matches(".btn-alarma")) {
     const alarma = document.getElementById("alarma");
