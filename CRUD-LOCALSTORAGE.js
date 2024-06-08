@@ -1,3 +1,7 @@
+/* const moment = require("moment");
+ */
+/* const moment = require("moment"); */
+moment.locale('es');
 let tasksStorage = "Tasks";
 let modalBackground = document.getElementById(`modal-background`);
 let modal = document.getElementById(`modal-create`);
@@ -13,8 +17,17 @@ function cambiarTiempo() {
   if (tasksDriver) {
     console.log(now.format("YYYY-MM-DDTHH:mm"));
     tasks = JSON.parse(tasksDriver);
+
+    
     for (let index = 0; index < tasks.length; index++) {
       const tarea = tasks[index];
+
+      let cuentaRegresiva = document.getElementById(`countdown-${tarea.id}`) 
+
+      let faltan = moment(tarea.dataInput).fromNow()
+
+      cuentaRegresiva.innerText = faltan;
+
 
       if (
         tarea.dataInput <= now.format("YYYY-MM-DDTHH:mm") &&
@@ -55,7 +68,8 @@ document.addEventListener("click", (e) => {
     console.log(finalMoment);
     let now = moment();
     console.log(now);
-    let duration = finalMoment.diff(now);
+    let faltan = moment(finalMoment).fromNow()
+   /*  let duration = finalMoment.diff(now);
     let interval = moment.duration(duration);
     let year = interval.years();
     let month = interval.months();
@@ -76,7 +90,7 @@ document.addEventListener("click", (e) => {
       faltan = `Faltan ${minute} minutos`;
     } else if (second > 0) {
       faltan = `Faltan ${second} segundos`;
-    }
+    } */
     modalBackground.classList.toggle("none");
     modal.classList.toggle("none");
     let tasksDriver = localStorage.getItem(tasksStorage);
